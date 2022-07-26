@@ -1,7 +1,7 @@
 @extends("inc.layout")
 @section("main")
    <x-alert/>
-    <form action="/cars/{{ $car->id }}" method="POST">
+    <form action="{{ route('cars.update',$car->id) }}" method="POST">
         @csrf
         @method("PUT")
         <div class="form-group my-4 ">

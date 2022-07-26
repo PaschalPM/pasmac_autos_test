@@ -103,10 +103,14 @@ class CarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ValidateRequest $request, Car $car)
+    public function update(Request $request, Car $car)
     {
         //
-        $request->validated;
+        $request->validate([
+            "name"=>["required"],
+            "founded"=>"regex:/^[0-9]{4}/",
+            "hq"=>"required"
+        ]);
 
         $car->update($request->all());
         return redirect("/cars");        

@@ -1,11 +1,12 @@
 @extends("inc.layout")
 @section("main")
-    <a href="/cars/create" onclick="openAddCarDialog(event)" class="btn btn-success mb-2 mx-auto d-block w-25">
+
+    <a href="{{ route('cars.create') }}" class="btn btn-success mb-2 mx-auto d-block w-25">
         add car +
     </a>
-    <div class="addCarDialog" style="display: none">
-        {{-- <x-add-car ></x-add-car> --}}
-    </div>  
+    @php
+        echo route('cars.create');
+    @endphp
     <div class="row">
        
         @forelse ($cars as $car)
@@ -22,14 +23,14 @@
                                 <span class="text-secondary"> Head-Quarters: </span>  {{ $car->hq }}
                             </p>
                             <div class="float-end float-md-none">
-                                <a href="/cars/{{ $car->id }}/edit" class="btn btn-outline-success">
+                                <a href="{{ route('cars.edit',$car->id) }}" class="btn btn-outline-success">
                                     edit
                                 </a>
                                 <x-delete-btn id="{{ $car->id }}"/>
                             </div>
                         </div>
                        
-                        <a href="cars/{{ $car->id }}" style="font-size: .85em" class=" float-start text-decoration-none">read more</a>
+                        <a href="{{ route('cars.show', $car->id)}}" style="font-size: .85em" class=" float-start text-decoration-none">read more</a>
                         <small class="float-end" style="font-size: .85em">created {{ $car->createdAt }}</small>
 
                     </div>
@@ -37,10 +38,11 @@
             </div>
         @empty
             <div style="font-size:1.5em; margin-top:25vh" class="text-center">
-                No record found... <small><a href="/cars/create">add record</a></small>
+                No record found... <small><a href="{{ route('cars.create') }}">add record</a></small>
             </div>
         @endforelse
     </div>
 @endsection
 
 
+    

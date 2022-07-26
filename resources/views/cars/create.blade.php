@@ -1,7 +1,7 @@
 @extends("inc.layout")
 @section("main")
    <x-alert/>
-    <form action="/cars" method="POST">
+    <form action="{{ route("cars.store") }}" method="POST">
         @csrf
         <div class="form-group my-4 ">
             <label for="name">
